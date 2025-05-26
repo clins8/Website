@@ -1,0 +1,15 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    text-align: center;
+    margin:0;
+    padding: 2rem;
+}
+
+.container{
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(153, 68, 68, 0.1);
+    display: inline-block;
+}
