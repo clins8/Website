@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>School Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      color: #333;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px;
+    }
+    .student-list {
+      margin-top: 20px;
+    }
+    .student-item {
+      background: #fff;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+    .student-item button {
+      float: right;
+    }
+  </style>
+</head>
+<body>
+  <h1>School Management System</h1>
+  
+  <form id="studentForm">
+    <input type="text" id="name" placeholder="Name" required />
+    <input type="text" id="grade" placeholder="Grade" required />
+    <input type="number" id="age" placeholder="Age" required />
+    <button type="submit">Add Student</button>
+  </form>
+
+  <div class="student-list" id="studentList">
+    <!-- Student entries will appear here -->
+  </div>
+
+  <script>
+    const form = document.getElementById('studentForm');
+    const studentList = document.getElementById('studentList');
+    let students = [];
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const grade = document.getElementById('grade').value;
+      const age = document.getElementById('age').value;
+
+      const student = { id: Date.now(), name, grade, age };
+      students.push(student);
+      renderStudents();
+      form.reset();
+    });
+
+    function renderStudents() {
+      studentList.innerHTML = '';
+      students.forEach((student) => {
+        const div = document.createElement('div');
+        div.className = 'student-item';
+        div.innerHTML = `
+          ${student.name} (Grade: ${student.grade}, Age: ${student.age})
+          <button onclick="deleteStudent(${student.id})">Delete</button>
+        `;
+        studentList.appendChild(div);
+      });
+    }
+
+    function deleteStudent(id) {
+      students = students.filter(student => student.id !== id);
+      renderStudents();
+    }
+  </script>
+</body>
+</html>
